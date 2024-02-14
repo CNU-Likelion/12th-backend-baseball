@@ -25,7 +25,13 @@ public class Application {
         }
 
         // user에게 수 입력받기
+        System.out.printf("숫자를 입력해주세요");
         String[] userArr = Console.readLine().split("");
+
+        // 사용자가 수를 잘못 입력했을 때
+        if (userArr.length != 3) {
+            throw new IllegalArgumentException();
+        }
 
         // 3개의 수를 입력받는다. -> 하나하나 빼서 LinkedList에 넣는다.
         // 같은 수가 같은 자리에 있으면 스트라이크, 같은 수가 다른 자리에 있으면 볼
