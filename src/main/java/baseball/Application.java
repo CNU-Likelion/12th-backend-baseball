@@ -24,6 +24,9 @@ public class Application {
             }
         }
 
+        // user에게 수 입력받기
+        String[] userArr = Console.readLine().split("");
+
         // 3개의 수를 입력받는다. -> 하나하나 빼서 LinkedList에 넣는다.
         // 같은 수가 같은 자리에 있으면 스트라이크, 같은 수가 다른 자리에 있으면 볼
         // 3개의 숫자를 모두 맞히면 종료
