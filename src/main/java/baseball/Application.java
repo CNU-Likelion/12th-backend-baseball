@@ -33,8 +33,14 @@ public class Application {
             throw new IllegalArgumentException();
         }
 
-        // 3개의 수를 입력받는다. -> 하나하나 빼서 LinkedList에 넣는다.
+        // 입력받은 수를 LinkedList에 넣기
+
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+
         // 같은 수가 같은 자리에 있으면 스트라이크, 같은 수가 다른 자리에 있으면 볼
+
         // 3개의 숫자를 모두 맞히면 종료
         // 잘못된 값을 입력받으면 IllegalArgumentException 출력
 
