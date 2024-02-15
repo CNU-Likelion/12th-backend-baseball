@@ -27,6 +27,16 @@ public class Application {
 
     }
 
+    static int countStrike() {
+        int cnt = 0;
+        for (int i = 0; i < 3; i++) {
+            if (randomNum.get(i) == userNum.get(i)) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
     public static void main(String[] args) {
         // TODO: 숫자 야구 게임 구현
         while (true) {
@@ -37,6 +47,8 @@ public class Application {
             pickNum();
 
             while (true) {
+                int strike = 0;
+                int ball = 0;
 
                 // 사용자에게 입력받은 수를 넣는 LinkedList
                 userNum = new LinkedList<>();
@@ -54,6 +66,7 @@ public class Application {
                 userNum.add(Integer.parseInt(userArr[2]));
 
                 // 같은 수가 같은 자리에 있으면 스트라이크, 같은 수가 다른 자리에 있으면 볼
+                strike = countStrike();
 
                 // 3개의 숫자를 모두 맞히면 종료
                 // 잘못된 값을 입력받으면 IllegalArgumentException 출력
