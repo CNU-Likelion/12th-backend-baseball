@@ -27,6 +27,7 @@ public class Application {
 
     }
 
+    // 스트라이크의 수를 센다
     static int countStrike() {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
@@ -37,6 +38,25 @@ public class Application {
         return cnt;
     }
 
+    // 볼의 수를 센다
+    static int countBall() {
+        int cnt = 0;
+        for (int i = 0; i < 3; i++) {
+            cnt += checkBall(i);
+        }
+        return cnt;
+    }
+
+    static int checkBall(int index) {
+        if (randomNum.contains(userNum.get(index))) {
+            if (index != randomNum.indexOf(userNum.get(index))) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    // 메인
     public static void main(String[] args) {
         // TODO: 숫자 야구 게임 구현
         while (true) {
@@ -67,12 +87,27 @@ public class Application {
 
                 // 같은 수가 같은 자리에 있으면 스트라이크, 같은 수가 다른 자리에 있으면 볼
                 strike = countStrike();
+                ball = countBall();
 
                 // 3개의 숫자를 모두 맞히면 종료
+                if (strike == 3) {
+                    break;
+                }
                 // 잘못된 값을 입력받으면 IllegalArgumentException 출력
 
             }
 
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            int again = Integer.parseInt(Console.readLine());
+
+            if (again == 1) {
+                continue;
+            } else if (again == 2) {
+                break;
+            } else {
+                throw new IllegalArgumentException();
+            }
         }
 
     }
