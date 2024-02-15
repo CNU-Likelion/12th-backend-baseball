@@ -93,7 +93,22 @@ public class Application {
                 if (strike == 3) {
                     break;
                 }
-                // 잘못된 값을 입력받으면 IllegalArgumentException 출력
+                // strike와 ball이 섞임
+                else if (strike != 0 && ball != 0) {
+                    System.out.printf("%d볼 %스트라이크\n", ball, strike);
+                }
+                // strike만
+                else if (strike != 0 && ball == 0) {
+                    System.out.printf("%스트라이크\n", strike);
+                }
+                // ball만
+                else if (strike != 0 && ball != 0) {
+                    System.out.printf("%d볼\n", ball);
+                }
+                // 둘 다 0일 때
+                else {
+                    System.out.printf("낫싱\n");
+                }
 
             }
 
