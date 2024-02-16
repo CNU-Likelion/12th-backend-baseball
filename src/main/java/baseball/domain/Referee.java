@@ -12,21 +12,22 @@ public class Referee {
         return Score.create(strikes, balls);
     }
 
-    private Strike checkStrike(String answer, Player player) {
-        int strikes = (int) IntStream.range(0, Math.min(answer.length(), player.getPlayerAnswer().length()))
+    private static Strike checkStrike(String answer, Player player) {
+        long strikes = IntStream.range(0, answer.length())
                 .filter(i -> answer.charAt(i) == player.getPlayerAnswer().charAt(i))
                 .count();
-        return new Strike(strikes);
+
+        return new Strike((int) strikes);
     }
 
     private Ball checkBalls(String answer, Player player) {
-        int balls = (int) IntStream.range(0, answer.length())
-                .filter(i -> {
-                    char currentDigit = answer.charAt(i);
-                    return player.getPlayerAnswer().contains(String.valueOf(currentDigit))
-                            && answer.indexOf(currentDigit) != player.getPlayerAnswer().indexOf(currentDigit);
-                })
-                .count();
+        int balls = 0;
+        for (int i = 0; i < answer.length(); i++) {
+            char digit = player.getPlayerAnswer().charAt(i);
+            if (answer.indexOf(digit) != -1 && answer.charAt(i) != digit) {
+                balls++;
+            }
+        }
         return new Ball(balls);
     }
 }

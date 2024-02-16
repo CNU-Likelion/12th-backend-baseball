@@ -18,7 +18,7 @@ public class InputView {
     }
 
     public String getNumbers() {
-        OutputView.print(PLAYER_INPUT_NUMBER_MESSAGE);
+        OutputView.printWithNoEnter(PLAYER_INPUT_NUMBER_MESSAGE);
         return Console.readLine();
     }
 

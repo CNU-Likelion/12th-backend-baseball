@@ -1,11 +1,12 @@
 package baseball.util;
 
+import java.util.List;
 import mallang.missionutils.Randoms;
 
 public class RandomNumberGenerator {
 
-    private final int startDigit = 1;
-    private final int endDigit = 9;
+    private final static int START_DIGIT = 1;
+    private final static int END_DIGIT = 9;
     private StringBuilder randomNumber;
 
     private RandomNumberGenerator() {
@@ -17,8 +18,9 @@ public class RandomNumberGenerator {
     }
 
     public String getRandomNumber() {
-        for(int i=0; i<3; i++) {
-            randomNumber.append(Randoms.pickNumberInRange(startDigit, endDigit));
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_DIGIT, END_DIGIT, 3);
+        for(int number : numbers) {
+            randomNumber.append(number);
         }
         return randomNumber.toString();
     }
