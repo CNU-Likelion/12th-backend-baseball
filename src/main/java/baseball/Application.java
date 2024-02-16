@@ -23,4 +23,13 @@ public class Application {
         int[] guess = parseInput(input);
         return guess;
     }
+    // 입력받은 String값 Int로 파싱해주기
+    public static int[] parseInput(String input) {
+        int[] guess = new int[3];
+        for(int i = 0; i < guess.length; i++) {
+            guess[i] = Character.getNumericValue(input.charAt(i));
+        }
+        return guess;
+    }
+
 }
