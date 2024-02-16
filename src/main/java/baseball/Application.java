@@ -49,4 +49,12 @@ public class Application {
             }
         }
     }
+    // 스트라이크 개수
+    public static void countStrikes(int[] answer, int[] guess, int[] result) {
+        for(int i = 0; i < answer.length; i++){
+            if(answer[i] == guess[i]) {
+                result[1]++;
+            }
+        }
+    }
 }
