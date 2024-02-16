@@ -9,9 +9,8 @@ public class Application {
     //메서드 선언
 
     public static int checkInputNum() throws IllegalArgumentException{
-        int k ;
-        k= Integer.parseInt( readLine() );
-        if (!(( 1 <= k) & ( k <= 9 ))){
+        int k = Integer.parseInt(readLine());
+        if (!((1 <= k) & (k <= 9))) {
             throw new IllegalArgumentException();
         }
         return k;
