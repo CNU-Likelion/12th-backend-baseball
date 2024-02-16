@@ -17,7 +17,6 @@ public class GameManager {
 
     public Player startOneGame(String playerAnswer) {
         this.player = Player.create(playerAnswer);
-        System.out.println(randomNumber);
         Score score = referee.judgeGame(randomNumber, player);
         player.createScore(score);
         return player;

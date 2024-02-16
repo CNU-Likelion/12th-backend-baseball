@@ -39,5 +39,9 @@ public final class BaseBallController {
         if (condition == 1) {
             start();
         }
+        if (condition == 2) {
+            System.exit(0);
+        }
+        askRestartOrExit();
     }
 }
