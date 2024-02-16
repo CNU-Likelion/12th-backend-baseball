@@ -1,5 +1,35 @@
 # 미션 - 숫자 야구 게임
 
+## 구현할 기능 목록
+
+- 배열을 두 개 생성한다.
+
+- 랜덤으로 1~9 사이 3개의 숫자를 만들어서 배열에 저장한다.
+  `mallang.missionutils.Random`의`pickNumberInRange()`
+- 사용자에게 숫자를 입력받아 배열에 저장한다.
+  `mallang.missionutils.Console`의`readLine()`
+
+- 만들어진 숫자와 사용자가 입력한 숫자를 비교한다.
+- strike ,ball, nothing 변수 = 0으로 설정한다.
+- 랜덤으로 만들어진 3개의 숫자와 입력한 숫자를 각각 비교한다.(while문 사용)
+  숫자와 자리수가 맞으면 strike의 수 증가
+  숫자만 맞으면 ball 수 증가
+  둘다 다르면 nothing
+
+- 결과를 출력한다.
+  - strike의 개수
+    ball 개수
+    nothing
+    출력
+  - 3개의 숫자가 숫자와 자리가 맞으면(while문 벗어남)
+    3스트라이크
+    3개의 숫자를 모두 맞히셨습니다! 게임 종료 출력
+  
+- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다. 
+
+- 개임 재시작여부
+  - 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
@@ -118,3 +148,4 @@
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blob/master/LICENSE) licensed.
+
