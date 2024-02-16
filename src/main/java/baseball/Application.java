@@ -20,7 +20,7 @@ public class Application {
 		}
 	}
 
-	/* 게임 메소드 */
+	/* 게임 실행 */
 	private static void playGame() {
 		// 랜덤 3자리 숫자 생성
 		int computerBall[] = generateRandomBall();
@@ -52,7 +52,7 @@ public class Application {
 		}
 	}
 
-	/* 게임 반복 메소드 */
+	/* 게임 반복 */
 	private static void playAgain() {
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 		String inputNum = Console.readLine();
