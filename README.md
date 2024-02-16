@@ -2,33 +2,22 @@
 
 ## 구현할 기능 목록
 
-- 배열을 두 개 생성한다.
+- 1부터 9까지의 서로 다른 임의의 수 3개를 생성한다. 
+  - mallang.missionutils.Randoms의 pickNumberInRange() 사용
 
-- 랜덤으로 1~9 사이 3개의 숫자를 만들어서 배열에 저장한다.
-  `mallang.missionutils.Random`의`pickNumberInRange()`
-- 사용자에게 숫자를 입력받아 배열에 저장한다.
-  `mallang.missionutils.Console`의`readLine()`
+- 사용자로부터 숫자를 입력받는다.
+  - mallang.missionutils.Console의 readline() 사용
 
-- 만들어진 숫자와 사용자가 입력한 숫자를 비교한다.
-- strike ,ball, nothing 변수 = 0으로 설정한다.
-- 랜덤으로 만들어진 3개의 숫자와 입력한 숫자를 각각 비교한다.(while문 사용)
-  숫자와 자리수가 맞으면 strike의 수 증가
-  숫자만 맞으면 ball 수 증가
-  둘다 다르면 nothing
+- 임의의 수와 사용자의 수를 비교한다.
+  - 숫자와 자리가 같으면 스트라이크
+  - 숫자는 같고 자리가 다르면 볼
+  - 숫자와 자리 같은 것이 둘다 없으면 낫싱
 
-- 결과를 출력한다.
-  - strike의 개수
-    ball 개수
-    nothing
-    출력
-  - 3개의 숫자가 숫자와 자리가 맞으면(while문 벗어남)
-    3스트라이크
-    3개의 숫자를 모두 맞히셨습니다! 게임 종료 출력
-  
-- 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다. 
+- 숫자 비교 후 게임을 계속하거나 종료
+  - 3개의 숫자가 모두 같으면 게임 종료
+  - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 발생시킨 후 종료
 
-- 개임 재시작여부
-  - 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+- 게임 종료 후 1을 입력해 게임을 다시 시작하거나 2를 입력해 게임을 완전히 종료 가능
 
 ## 🔍 진행방식
 
