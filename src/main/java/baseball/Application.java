@@ -57,4 +57,8 @@ public class Application {
             }
         }
     }
+    // 결과 출력 (출력 수정 필요)
+    public static void printResult(int[] result) {
+        System.out.println(result[0] + "볼" + " " + result[1] + "스트라이크" + result[2] + "낫싱");
+    }
 }
