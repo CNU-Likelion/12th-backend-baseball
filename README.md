@@ -118,3 +118,11 @@
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blob/master/LICENSE) licensed.
+
+##  필요한 프로그래밍
+
+- 사용자가 숫자를 입력할수 있어야함.
+- 컴퓨터가 난수를 생성해야함
+- 컴퓨터가 생성한 난수와 사용자의 숫자를 비교해야함
+- 그 비교한 숫자끼리 맞는 횟수를 확인해 스트라이크와 볼을 나타내야함.
+- 다 맞춘뒤 게임을 계속할 것인지 그만둘 것인지 나타낼 수 있어야함.
