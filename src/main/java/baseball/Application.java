@@ -15,4 +15,14 @@ public class Application {
         }
         return k;
     }
+
+    public static int[] getThreeNums() {
+        int[] userNums = new int[3];
+
+        for (int i = 0 ; i<3 ; i++) {
+            userNums[i]=checkInputNum();
+        }
+
+        return userNums;
+    }
 }
