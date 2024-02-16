@@ -31,5 +31,12 @@ public class Application {
         }
         return guess;
     }
-
+    // 정답 확인 함수
+    public static int[] checkNum(int[] answer, int[] guess) {
+        int[] result = new int[3];
+        countBalls(answer, guess, result);
+        countStrikes(answer, guess, result);
+        result[2] = 3 - result[0] - result[1]; // 낫싱 개수
+        return result;
+    }
 }
