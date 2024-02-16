@@ -1,6 +1,7 @@
 package baseball;
+import java.util.*;
 import mallang.missionutils.Randoms;
-
+import mallang.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,5 +15,12 @@ public class Application {
         }
         return answer;
     }
-
+    // 사용자로부터 숫자 입력받아 배열에 저장
+    // 사용자가 잘못된 값 입력할 경우 IllegalArgumentException 발생 (만들어야 함)
+    public static int[] userNum() {
+        System.out.println("숫자를 입력해주세요 : ");
+        String input = Console.readLine();
+        int[] guess = parseInput(input);
+        return guess;
+    }
 }
