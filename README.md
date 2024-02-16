@@ -1,6 +1,6 @@
 # 미션 - 숫자 야구 게임
 
-## 구현할 기능 목록
+## 구현할 기능 목록 
 
 - 1부터 9까지의 서로 다른 임의의 수 3개를 생성한다. 
   - mallang.missionutils.Randoms의 pickNumberInRange() 사용
