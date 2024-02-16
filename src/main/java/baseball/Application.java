@@ -39,4 +39,14 @@ public class Application {
         result[2] = 3 - result[0] - result[1]; // 낫싱 개수
         return result;
     }
+    // 볼 개수
+    public static void countBalls(int[] answer, int[] guess, int[] result) {
+        for(int i = 0; i < answer.length; i++) {
+            for(int j = 0; j < guess.length; j++) {
+                if(answer[i] == guess[j] && i != j) {
+                    result[0]++;
+                }
+            }
+        }
+    }
 }
