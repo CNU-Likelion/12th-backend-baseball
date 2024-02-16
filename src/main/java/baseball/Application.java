@@ -1,5 +1,4 @@
 package baseball;
-import java.util.*;
 import mallang.missionutils.Randoms;
 import mallang.missionutils.Console;
 
@@ -7,8 +6,8 @@ public class Application {
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
     }
-    // 1부터 9까지의 서로 다른 임의의 수를 3개 생성해서 배열에 저장
-    public int[] answerNum() {
+    // 1부터 9까지의 서로 다른 임의의 수를 3개 생성해서 배열에 저장 (숫자가 겹치지 않도록 수정)
+    public static int[] answerNum() {
         int[] answer = new int[3];
         for(int i = 0; i < answer.length; i++) {
             answer[i] = Randoms.pickNumberInRange(1,9);
@@ -61,4 +60,11 @@ public class Application {
     public static void printResult(int[] result) {
         System.out.println(result[0] + "볼" + " " + result[1] + "스트라이크" + result[2] + "낫싱");
     }
+    // 게임 재시작 여부
+    public static boolean continueGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int choice = Integer.parseInt(Console.readLine());
+        return choice == 1;
+    }
+
 }
