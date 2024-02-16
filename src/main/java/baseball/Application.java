@@ -1,7 +1,6 @@
 package baseball;
-import java.util.*;
 import mallang.missionutils.Randoms;
-import mallang.missionutils.Console;
+
 
 public class Application {
     public static void main(String[] args) {
