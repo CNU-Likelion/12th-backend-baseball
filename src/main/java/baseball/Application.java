@@ -1,5 +1,6 @@
 package baseball;
 import static mallang.missionutils.Console.*;
+import static mallang.missionutils.Randoms.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -26,5 +27,15 @@ public class Application {
         }
 
         return userNums;
+    }
+
+    public static int[] setComputerNums() {
+        int[] computerNums = new int[3];
+
+        for (int i = 0 ; i < 3 ; i++) {
+            computerNums[i] = pickNumberInRange(1,9);
+        }
+
+        return computerNums;
     }
 }
