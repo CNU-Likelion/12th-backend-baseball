@@ -7,6 +7,20 @@ public class Application {
         //TODO: 숫자 야구 게임 구현
     }
 
+    public static void startBallGame(){
+        boolean doGame = true;
+
+        while (doGame) {
+            int[] userNum = getThreeNums();
+            int[] comNum = setComputerNums();
+            int[] strikeBallNum = countStrikeBall(userNum,comNum);
+            int strike = strikeBallNum[0];
+            int ball = strikeBallNum[1];
+
+            doGame = printResult(strike,ball);
+        }
+    }
+
     //메서드 선언
 
     public static boolean checkInputNum(char a,int start,int end) throws IllegalArgumentException{
