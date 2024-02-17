@@ -5,12 +5,14 @@ import mallang.missionutils.Randoms;
 
 public class Opponent {
 
+    private static final int MAXIMUM_LENGTH_OF_ANSWER = 3;
+
     private final List<Integer> answers;
 
     public Opponent(final List<Integer> answers) {
         this.answers = answers;
 
-        while (answers.size() < 3) {
+        while (answers.size() < MAXIMUM_LENGTH_OF_ANSWER) {
             final int randomDigit = Randoms.pickNumberInRange(1, 9);
             if (!answers.contains(randomDigit)) {
                 answers.add(randomDigit);

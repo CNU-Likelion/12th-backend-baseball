@@ -2,10 +2,16 @@ package baseball;
 
 public class Hint {
 
-    private int strike = 0;
-    private int ball = 0;
+    private static final int STRIKE_OUT_COUNT = 3;
+    private static final int INITIAL_STRIKE_COUNT = 0;
+    private static final int INITIAL_BALL_COUNT = 0;
+
+    private int strike;
+    private int ball;
 
     public Hint() {
+        this.strike = INITIAL_STRIKE_COUNT;
+        this.ball = INITIAL_BALL_COUNT;
     }
 
     public void increaseStrike() {
@@ -17,18 +23,18 @@ public class Hint {
     }
 
     public boolean isStrikeOut() {
-        return strike == 3;
+        return strike == STRIKE_OUT_COUNT;
     }
 
     public void print() {
         final StringBuilder hintMessageBuilder = new StringBuilder();
-        if (ball != 0) {
+        if (ball != INITIAL_BALL_COUNT) {
             hintMessageBuilder.append(ball).append("볼 ");
         }
-        if (strike != 0) {
+        if (strike != INITIAL_STRIKE_COUNT) {
             hintMessageBuilder.append(strike).append("스트라이크");
         }
-        if (ball == 0 && strike == 0) {
+        if (ball == INITIAL_BALL_COUNT && strike == INITIAL_STRIKE_COUNT) {
             hintMessageBuilder.append("낫싱");
         }
         System.out.println(hintMessageBuilder);
