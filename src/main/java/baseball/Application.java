@@ -9,13 +9,19 @@ public class Application {
 
     //메서드 선언
 
-    public static int checkInputNum() throws IllegalArgumentException{
-        System.out.println("숫자를 입력해주세요 : ");
+    public static boolean checkInputNum(char a) throws IllegalArgumentException{
 
-        if (!((1 <= k) & (k <= 9))) {
-            throw new IllegalArgumentException();
+        try {
+            int b = (int) a ;
+            if ((1 <= b) && (b <=9)) {
+                return true;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e){
+            throw e;
         }
-        return k;
+
     }
 
     //이용자로부터 숫자 3개를 받아 저장하는 함수
