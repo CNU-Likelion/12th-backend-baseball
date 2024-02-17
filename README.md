@@ -132,3 +132,4 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
   - GameManager : 게임 진행을 담당하는 책임
   - Referee : 점수를 판단하는 책임
   - Player : 자신이 내놓은 숫자를 알고 있다.
+  - Score : 스트라이크와 볼 정보를 안다.
