@@ -30,6 +30,7 @@ public class Opponent {
         for (int i = 0; i < userNumbers.size(); i++) {
             final int userDigit = userNumbers.get(i);
             final int opponentDigit = answers.get(i);
+
             if (userDigit == opponentDigit) {
                 hint.increaseStrike();
                 continue;
