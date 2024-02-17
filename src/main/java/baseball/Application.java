@@ -35,7 +35,7 @@ public class Application {
         //숫자로 분리하기
         for (int i =0 ; i<3 ; i++) {
             char a = k.charAt(i);
-            if checkInputNum(a) {
+            if (checkInputNum(a)) {
                 userNums[i] = (int) a;
             }
         }
