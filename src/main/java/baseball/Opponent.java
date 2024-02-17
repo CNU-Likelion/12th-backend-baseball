@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 import mallang.missionutils.Randoms;
 
@@ -9,15 +10,19 @@ public class Opponent {
 
     private final List<Integer> answers;
 
-    public Opponent(final List<Integer> answers) {
+    private Opponent(final List<Integer> answers) {
         this.answers = answers;
+    }
 
+    public static Opponent create() {
+        final List<Integer> answers = new ArrayList<>();
         while (answers.size() < MAXIMUM_LENGTH_OF_ANSWER) {
             final int randomDigit = Randoms.pickNumberInRange(1, 9);
             if (!answers.contains(randomDigit)) {
                 answers.add(randomDigit);
             }
         }
+        return new Opponent(answers);
     }
 
     public Hint checkHint(final List<Integer> userNumbers) {

@@ -1,13 +1,12 @@
 package baseball;
 
-import java.util.ArrayList;
 import mallang.missionutils.Console;
 
 public class BaseballGame {
 
     public void start() {
         do {
-            final Opponent opponent = new Opponent(new ArrayList<>());
+            final Opponent opponent = Opponent.create();
             startUserProcess(opponent);
         } while (isRestarting());
     }
@@ -16,7 +15,7 @@ public class BaseballGame {
         while (true) {
             final User user = initializeUser();
             final Hint hint = opponent.checkHint(user.getNumbers());
-            hint.print();
+            printHint(hint);
 
             if (hint.isStrikeOut()) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
@@ -29,6 +28,23 @@ public class BaseballGame {
         System.out.print("숫자를 입력해주세요 : ");
         final String userInput = Console.readLine();
         return User.from(userInput);
+    }
+
+    private void printHint(final Hint hint) {
+        final int strike = hint.getStrike();
+        final int ball = hint.getBall();
+        final StringBuilder hintMessageBuilder = new StringBuilder();
+
+        if (hint.isNotInitialBallCount()) {
+            hintMessageBuilder.append(ball).append("볼 ");
+        }
+        if (hint.isNotInitialStrikeCount()) {
+            hintMessageBuilder.append(strike).append("스트라이크");
+        }
+        if (hint.isNothing()) {
+            hintMessageBuilder.append("낫싱");
+        }
+        System.out.println(hintMessageBuilder);
     }
 
     private boolean isRestarting() {

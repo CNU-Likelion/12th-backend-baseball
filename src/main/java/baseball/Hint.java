@@ -26,17 +26,23 @@ public class Hint {
         return strike == STRIKE_OUT_COUNT;
     }
 
-    public void print() {
-        final StringBuilder hintMessageBuilder = new StringBuilder();
-        if (ball != INITIAL_BALL_COUNT) {
-            hintMessageBuilder.append(ball).append("볼 ");
-        }
-        if (strike != INITIAL_STRIKE_COUNT) {
-            hintMessageBuilder.append(strike).append("스트라이크");
-        }
-        if (ball == INITIAL_BALL_COUNT && strike == INITIAL_STRIKE_COUNT) {
-            hintMessageBuilder.append("낫싱");
-        }
-        System.out.println(hintMessageBuilder);
+    public boolean isNotInitialStrikeCount() {
+        return strike != INITIAL_STRIKE_COUNT;
+    }
+
+    public boolean isNotInitialBallCount() {
+        return ball != INITIAL_BALL_COUNT;
+    }
+
+    public boolean isNothing() {
+        return ball == INITIAL_BALL_COUNT && strike == INITIAL_STRIKE_COUNT;
+    }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
     }
 }
