@@ -74,7 +74,9 @@ public class Application {
 
         //스트라이크 찾기
         for (int i =0; i<3; i++) {
-
+            if(user[i] == com[i]) {
+                strike++;
+            }
         }
 
         //볼찾기 (자리는 다른 같은 수 개수)
