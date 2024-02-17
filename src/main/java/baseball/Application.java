@@ -12,18 +12,26 @@ public class Application {
     public static int checkInputNum() throws IllegalArgumentException{
         System.out.println("숫자를 입력해주세요 : ");
 
-        int k = Integer.parseInt(readLine());
         if (!((1 <= k) & (k <= 9))) {
             throw new IllegalArgumentException();
         }
         return k;
     }
 
+    //이용자로부터 숫자 3개를 받아 저장하는 함수
     public static int[] getThreeNums() {
         int[] userNums = new int[3];
+        String k ;
 
-        for (int i = 0 ; i<3 ; i++) {
-            userNums[i]=checkInputNum();
+        System.out.println("숫자를 입력해주세요 : ");
+        k = readLine();
+
+        //숫자로 분리하기
+        for (int i =0 ; i<3 ; i++) {
+            char a = k.charAt(i);
+            if checkInputNum(a) {
+                userNums[i] = (int) a;
+            }
         }
 
         return userNums;
