@@ -9,12 +9,7 @@ public class InputView {
     private static final String RESTART_INPUT_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
     public <T> T getInputWithRetry(Supplier<T> inputReader) {
-        try {
-            return inputReader.get();
-        } catch (IllegalArgumentException e) {
-            OutputView.print(e.getMessage());
-            return getInputWithRetry(inputReader);
-        }
+        return inputReader.get();
     }
 
     public String getNumbers() {

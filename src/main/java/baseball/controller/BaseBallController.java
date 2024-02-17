@@ -18,7 +18,7 @@ public final class BaseBallController {
 
     public void start() {
         RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.create();
-        final GameManager gameManager = GameManager.create(randomNumberGenerator.getRandomNumber());
+        final GameManager gameManager = GameManager.create(randomNumberGenerator.setComputerNumber());
         inputOneAnswer(gameManager);
     }
 
@@ -38,9 +38,10 @@ public final class BaseBallController {
         int condition = inputView.getInputWithRetry(inputView::getRestartCondition);
         if (condition == 1) {
             start();
+            return;
         }
         if (condition == 2) {
-            System.exit(0);
+            return;
         }
         askRestartOrExit();
     }
