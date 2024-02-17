@@ -1,4 +1,4 @@
-package baseball;
+﻿package baseball;
 import static mallang.missionutils.Console.*;
 import static mallang.missionutils.Randoms.*;
 
@@ -24,10 +24,10 @@ public class Application {
 
     //메서드 선언
 
-    public static boolean checkInputNum(char a,int start,int end) throws IllegalArgumentException{
+    public static boolean checkInputNum(String a,int start,int end) throws IllegalArgumentException{
 
         try {
-            int b = (int) a ;
+            int b = Integer.parseInt(a) ;
             if ((start <= b) && (b <=end)) {
                 return true;
             } else {
@@ -49,9 +49,10 @@ public class Application {
 
         //숫자로 분리하기
         for (int i =0 ; i<3 ; i++) {
-            char a = k.charAt(i);
+            char b = k.charAt(i);
+            String a = String.valueOf(b);
             if (checkInputNum(a,1,9)) {
-                userNums[i] = (int) a;
+                userNums[i] = Integer.parseInt(a);
             }
         }
 
@@ -120,7 +121,7 @@ public class Application {
             throw new IllegalArgumentException();
         }
         //숫자값이 1 또는 2인지 확인
-        checkInputNum(restart.charAt(0),1,2);
+        checkInputNum(restart,1,2);
 
         if (restart.equals("1")) {
             return true;
