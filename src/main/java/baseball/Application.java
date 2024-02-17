@@ -9,11 +9,11 @@ public class Application {
 
     //메서드 선언
 
-    public static boolean checkInputNum(char a) throws IllegalArgumentException{
+    public static boolean checkInputNum(char a,int start,int end) throws IllegalArgumentException{
 
         try {
             int b = (int) a ;
-            if ((1 <= b) && (b <=9)) {
+            if ((start <= b) && (b <=end)) {
                 return true;
             } else {
                 throw new IllegalArgumentException();
@@ -35,7 +35,7 @@ public class Application {
         //숫자로 분리하기
         for (int i =0 ; i<3 ; i++) {
             char a = k.charAt(i);
-            if (checkInputNum(a)) {
+            if (checkInputNum(a,1,9)) {
                 userNums[i] = (int) a;
             }
         }
