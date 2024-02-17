@@ -5,6 +5,7 @@ import static mallang.missionutils.Randoms.*;
 public class Application {
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
+        startBallGame();
     }
 
     public static void startBallGame(){
