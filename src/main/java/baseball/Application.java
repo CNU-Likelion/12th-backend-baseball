@@ -52,4 +52,26 @@ public class Application {
 
         return computerNums;
     }
+
+
+    public static int[] countStrikeBall(int[] user, int[] com) {
+        int strike =0;
+        int ball=0;
+
+        //스트라이크 찾기
+        for (int i =0; i<3; i++) {
+
+        }
+
+        //볼찾기 (자리는 다른 같은 수 개수)
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if ((i!=j)&&(user[i] == com[i])) {
+                    ball++;
+                }
+            }
+        }
+
+        return new int[] {strike,ball};
+    }
 }
