@@ -5,6 +5,25 @@ import mallang.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         //TODO: 숫자 야구 게임 구현
+        startGame();
+    }
+    // 게임 시작
+    public static void startGame() {
+        int[] answer = answerNum();
+
+        while(true) {
+            int[] guess = userNum();
+            int[] result = checkNum(answer, guess);
+            printResult(result);
+
+            if (result[2] == 3) {
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료 ");
+                break;
+            }
+            if(!continueGame()) {
+                break;
+            }
+        }
     }
     // 1부터 9까지의 서로 다른 임의의 수를 3개 생성해서 배열에 저장 (숫자가 겹치지 않도록 수정)
     public static int[] answerNum() {
