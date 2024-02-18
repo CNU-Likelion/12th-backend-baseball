@@ -3,7 +3,41 @@ package baseball;
 import java.util.*;
 import mallang.missionutils.*;
 
+class HandleRandomNum {
+
+    void pickNum(List<Integer> randomNum) {
+        while (randomNum.size() != 3) {
+            int ranNum = Randoms.pickNumberInRange(1, 9);
+            if (!randomNum.contains(ranNum)) {
+                randomNum.add(ranNum);
+            }
+        }
+    }
+}
+
+class HandleUserNum {
+
+    String[] getUserNum() {
+        System.out.printf("숫자를 입력해주세요");
+        return Console.readLine().split("");
+    }
+
+    void checkUserNum(String[] userArr) {
+        if (userArr.length != 3) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+        return userNum;
+    }
+}
+
 class Count {
+
     int countBall(List<Integer> userNum, List<Integer> randomNum) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
@@ -32,38 +66,8 @@ class Count {
     }
 }
 
-class HandleUserNum {
-    String[] getUserNum() {
-        System.out.printf("숫자를 입력해주세요");
-        return Console.readLine().split("");
-    }
-
-    void checkUserNum(String[] userArr) {
-        if (userArr.length != 3) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
-        userNum.add(Integer.parseInt(userArr[0]));
-        userNum.add(Integer.parseInt(userArr[1]));
-        userNum.add(Integer.parseInt(userArr[2]));
-        return userNum;
-    }
-}
-
-class HandleRandomNum {
-    void pickNum(List<Integer> randomNum) {
-        while (randomNum.size() != 3) {
-            int ranNum = Randoms.pickNumberInRange(1, 9);
-            if (!randomNum.contains(ranNum)) {
-                randomNum.add(ranNum);
-            }
-        }
-    }
-}
-
 class HandleProgress {
+
     int printAnswer(int strike, int ball) {
         if (strike == 3) {
             System.out.println("3스트라이크");
@@ -96,7 +100,6 @@ class HandleProgress {
             throw new IllegalArgumentException();
         }
     }
-
 }
 
 public class Application {
@@ -137,7 +140,6 @@ public class Application {
             int again = handleProgress.askFinish();
             doGameSet = handleProgress.endOrAgain(again);
             doUserSet = 1;
-
         }
     }
 }
