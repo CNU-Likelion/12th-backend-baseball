@@ -4,6 +4,7 @@ import java.util.List;
 import mallang.missionutils.*;
 
 public class HandleUserNum {
+
     String[] getUserNum() {
         System.out.printf("숫자를 입력해주세요");
         return Console.readLine().split("");
