@@ -1,12 +1,8 @@
 package baseball;
 
-import java.util.ArrayList;
 import java.util.List;
-import mallang.missionutils.Randoms;
 
 public class Opponent {
-
-    private static final int MAXIMUM_LENGTH_OF_ANSWER = 3;
 
     private final List<Integer> answers;
 
@@ -14,14 +10,8 @@ public class Opponent {
         this.answers = answers;
     }
 
-    public static Opponent create() {
-        final List<Integer> answers = new ArrayList<>();
-        while (answers.size() < MAXIMUM_LENGTH_OF_ANSWER) {
-            final int randomDigit = Randoms.pickNumberInRange(1, 9);
-            if (!answers.contains(randomDigit)) {
-                answers.add(randomDigit);
-            }
-        }
+    public static Opponent from(final AnswerGenerator answerGenerator) {
+        final List<Integer> answers = answerGenerator.generate();
         return new Opponent(answers);
     }
 

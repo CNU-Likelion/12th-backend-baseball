@@ -14,7 +14,7 @@ class OpponentTest {
     @DisplayName("상대방을 정상적으로 생성한다.")
     void createOpponent() throws Exception {
         // given, when
-        final Opponent opponent = Opponent.create();
+        final Opponent opponent = Opponent.from(new RandomAnswerGenerator());
 
         final Class<? extends Opponent> clazz = opponent.getClass();
         final Field field = clazz.getDeclaredField("answers");
@@ -27,15 +27,10 @@ class OpponentTest {
 
     @Test
     @DisplayName("힌트를 정상적으로 생성한다.")
-    void checkHint() throws Exception {
+    void checkHint() {
         // given
-        final Opponent opponent = Opponent.create();
+        final Opponent opponent = Opponent.from(new FixedAnswerGenerator());
         final List<Integer> userNumbers = List.of(1, 2, 3);
-
-        final Class<? extends Opponent> clazz = opponent.getClass();
-        final Field field = clazz.getDeclaredField("answers");
-        field.setAccessible(true);
-        field.set(opponent, List.of(1, 4, 2));
 
         // when
         final Hint hint = opponent.checkHint(userNumbers);

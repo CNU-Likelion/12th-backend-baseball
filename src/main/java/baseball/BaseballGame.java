@@ -6,7 +6,7 @@ public class BaseballGame {
 
     public void start() {
         do {
-            final Opponent opponent = Opponent.create();
+            final Opponent opponent = Opponent.from(new RandomAnswerGenerator());
             startUserProcess(opponent);
         } while (isRestarting());
     }
