@@ -1,6 +1,5 @@
 package baseball;
 
-import java.io.*;
 import java.util.*;
 import mallang.missionutils.*;
 import mallang.missionutils.Console;
