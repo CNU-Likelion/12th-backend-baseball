@@ -6,10 +6,7 @@ import mallang.missionutils.Console;
 
 public class Application {
 
-    static LinkedList<Integer> randomNum;
-    static LinkedList<Integer> userNum;
-
-    static void pickNum() {
+    static void pickNum(List<Integer> randomNum) {
         while (randomNum.size() != 3) {
             int ranNum = Randoms.pickNumberInRange(1, 9);
             if (!randomNum.contains(ranNum)) {
@@ -25,7 +22,7 @@ public class Application {
 
     }
 
-    static int countStrike() {
+    static int countStrike(List<Integer> randomNum, List<Integer> userNum) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
             if (randomNum.get(i) == userNum.get(i)) {
@@ -35,15 +32,15 @@ public class Application {
         return cnt;
     }
 
-    static int countBall() {
+    static int countBall(List<Integer> userNum, List<Integer> randomNum) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
-            cnt += checkBall(i);
+            cnt += checkBall(i, userNum, randomNum);
         }
         return cnt;
     }
 
-    static int checkBall(int index) {
+    static int checkBall(int index, List<Integer> userNum, List<Integer> randomNum) {
         if (randomNum.contains(userNum.get(index))) {
             if (index != randomNum.indexOf(userNum.get(index))) {
                 return 1;
@@ -52,8 +49,11 @@ public class Application {
         return 0;
     }
 
-    static void printAnswer(int strike, int ball) {
-        if (strike != 0 && ball != 0) {
+    static int printAnswer(int strike, int ball) {
+        if (strike == 3) {
+            System.out.println("3스트라이크");
+            return 0;
+        } else if (strike != 0 && ball != 0) {
             System.out.printf("%d볼 %d스트라이크\n", ball, strike);
         } else if (strike != 0 && ball == 0) {
             System.out.printf("%d스트라이크\n", strike);
@@ -62,55 +62,72 @@ public class Application {
         } else {
             System.out.printf("낫싱\n");
         }
+        return 1;
+    }
+
+    static int askFinish() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    static int endOrAgain(int again) {
+        if (again == 1) {
+            return 1;
+        } else if (again == 2) {
+            System.out.println("게임종료");
+            return 0;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    static List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+
+        return userNum;
+    }
+
+    static String[] getUserNum() {
+        System.out.printf("숫자를 입력해주세요");
+        return Console.readLine().split("");
     }
 
     public static void main(String[] args) {
 
-        while (true) {
+        List<Integer> randomNum;
+        List<Integer> userNum;
 
-            randomNum = new LinkedList<>();
-            pickNum();
+        int doGameSet = 1;
+        int doUserSet = 1;
 
-            while (true) {
+        while (doGameSet == 1) {
+            randomNum = new ArrayList<>();
+            pickNum(randomNum);
+
+            while (doUserSet == 1) {
                 int strike = 0;
                 int ball = 0;
 
-                userNum = new LinkedList<>();
+                userNum = new ArrayList<>();
 
-                System.out.printf("숫자를 입력해주세요");
-                String[] userArr = Console.readLine().split("");
+                String[] userArr = getUserNum();
 
                 checkUserNum(userArr);
+                addNumToList(userNum, userArr);
 
-                userNum.add(Integer.parseInt(userArr[0]));
-                userNum.add(Integer.parseInt(userArr[1]));
-                userNum.add(Integer.parseInt(userArr[2]));
+                strike = countStrike(randomNum, userNum);
+                ball = countBall(userNum, randomNum);
 
-                strike = countStrike();
-                ball = countBall();
-
-                if (strike == 3) {
-                    System.out.println("3스트라이크");
-                    break;
-                } else {
-                    printAnswer(strike, ball);
-                }
-
+                doUserSet = printAnswer(strike, ball);
             }
 
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            int again = Integer.parseInt(Console.readLine());
+            int again = askFinish();
+            doGameSet = endOrAgain(again);
+            doUserSet = 1;
 
-            if (again == 1) {
-                continue;
-            } else if (again == 2) {
-                System.out.println("게임종료");
-                break;
-            } else {
-                throw new IllegalArgumentException();
-            }
         }
-
     }
 }
