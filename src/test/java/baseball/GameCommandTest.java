@@ -43,6 +43,6 @@ class GameCommandTest {
         // when, then
         assertThatThrownBy(() -> GameCommand.isRestarting(waitingCommand))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("1, 2만 입력이 가능합니다.");
+                .hasMessage("커맨드는 1, 2만 가능합니다.");
     }
 }

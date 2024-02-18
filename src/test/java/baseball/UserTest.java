@@ -35,6 +35,6 @@ class UserTest {
         // when, then
         assertThatThrownBy(() -> User.from(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력은 1~9사이의 서로 다른 3자리 숫자만 가능합니다.");
+                .hasMessage("1~9사이의 서로 다른 3자리 숫자만 가능합니다.");
     }
 }

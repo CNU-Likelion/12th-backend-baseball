@@ -17,7 +17,7 @@ public enum GameCommand {
 
     public static boolean isRestarting(final String waitingCommand) {
         if (isIncorrectCommand(waitingCommand)) {
-            throw new IllegalArgumentException("1, 2만 입력이 가능합니다.");
+            throw new IllegalArgumentException("커맨드는 1, 2만 가능합니다.");
         }
         return Objects.equals(RESTART.commandDigit, waitingCommand);
     }

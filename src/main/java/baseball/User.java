@@ -27,7 +27,7 @@ public class User {
 
     private static void validate(final String userInput) {
         if (!USER_INPUT_VALIDATION_REGEX.matcher(userInput).matches()) {
-            throw new IllegalArgumentException("입력은 1~9사이의 서로 다른 3자리 숫자만 가능합니다.");
+            throw new IllegalArgumentException("1~9사이의 서로 다른 3자리 숫자만 가능합니다.");
         }
     }
 
