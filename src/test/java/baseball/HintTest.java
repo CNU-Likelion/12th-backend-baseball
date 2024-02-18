@@ -67,25 +67,25 @@ class HintTest {
 
     @Test
     @DisplayName("스트라이크가 초기 개수가 아니라면 true를 반환한다.")
-    void isNotInitialStrikeCount() {
+    void hasStrike() {
         // given
         hint.increaseStrike();
 
         // when
-        final boolean isNotInitialStrikeCount = hint.isNotInitialStrikeCount();
+        final boolean isNotInitialStrikeCount = hint.hasStrike();
 
         // then
         assertThat(isNotInitialStrikeCount).isTrue();
     }
 
     @Test
-    @DisplayName("볼이 초기 개수가 아니라면 false를 반환한다.")
-    void isNotInitialBallCount() {
+    @DisplayName("볼이 초기 개수가 아니라면 true를 반환한다.")
+    void hasBall() {
         // given
         hint.increaseBall();
 
         // when
-        final boolean isNotInitialBallCount = hint.isNotInitialBallCount();
+        final boolean isNotInitialBallCount = hint.hasBall();
 
         // then
         assertThat(isNotInitialBallCount).isTrue();

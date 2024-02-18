@@ -35,10 +35,10 @@ public class BaseballGame {
         final int ball = hint.getBall();
         final StringBuilder hintMessageBuilder = new StringBuilder();
 
-        if (hint.isNotInitialBallCount()) {
+        if (hint.hasBall()) {
             hintMessageBuilder.append(ball).append("볼 ");
         }
-        if (hint.isNotInitialStrikeCount()) {
+        if (hint.hasStrike()) {
             hintMessageBuilder.append(strike).append("스트라이크");
         }
         if (hint.isNothing()) {

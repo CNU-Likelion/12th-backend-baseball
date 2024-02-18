@@ -26,11 +26,11 @@ public class Hint {
         return strike == STRIKE_OUT_COUNT;
     }
 
-    public boolean isNotInitialStrikeCount() {
+    public boolean hasStrike() {
         return strike != INITIAL_STRIKE_COUNT;
     }
 
-    public boolean isNotInitialBallCount() {
+    public boolean hasBall() {
         return ball != INITIAL_BALL_COUNT;
     }
 
