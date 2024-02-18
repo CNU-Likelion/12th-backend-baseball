@@ -15,11 +15,23 @@ public class Application {
         }
     }
 
+    static String[] getUserNum() {
+        System.out.printf("숫자를 입력해주세요");
+        return Console.readLine().split("");
+    }
+
     static void checkUserNum(String[] userArr) {
         if (userArr.length != 3) {
             throw new IllegalArgumentException();
         }
 
+    }
+
+    static List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+        return userNum;
     }
 
     static int countStrike(List<Integer> randomNum, List<Integer> userNum) {
@@ -80,19 +92,6 @@ public class Application {
         } else {
             throw new IllegalArgumentException();
         }
-    }
-
-    static List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
-        userNum.add(Integer.parseInt(userArr[0]));
-        userNum.add(Integer.parseInt(userArr[1]));
-        userNum.add(Integer.parseInt(userArr[2]));
-
-        return userNum;
-    }
-
-    static String[] getUserNum() {
-        System.out.printf("숫자를 입력해주세요");
-        return Console.readLine().split("");
     }
 
     public static void main(String[] args) {
