@@ -1,5 +1,10 @@
 package baseball;
 
+import baseball.domain.GameCommand;
+import baseball.domain.Hint;
+import baseball.domain.Opponent;
+import baseball.domain.RandomAnswerGenerator;
+import baseball.domain.User;
 import mallang.missionutils.Console;
 
 public class BaseballGame {

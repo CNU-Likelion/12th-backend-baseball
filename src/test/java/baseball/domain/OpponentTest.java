@@ -1,8 +1,9 @@
-package baseball;
+package baseball.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
+import baseball.test.FixedAnswerGenerator;
 import java.lang.reflect.Field;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

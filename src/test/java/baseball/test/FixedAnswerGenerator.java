@@ -1,5 +1,6 @@
-package baseball;
+package baseball.test;
 
+import baseball.domain.AnswerGenerator;
 import java.util.List;
 
 public class FixedAnswerGenerator implements AnswerGenerator {
