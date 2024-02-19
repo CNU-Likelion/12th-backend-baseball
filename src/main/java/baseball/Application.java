@@ -12,13 +12,17 @@ public class Application {
         boolean doGame = true;
 
         while (doGame) {
-            int[] userNum = getThreeNums();
-            int[] comNum = {1,2,3};//setComputerNums();
-            int[] strikeBallNum = countStrikeBall(userNum,comNum);
-            int strike = strikeBallNum[0];
-            int ball = strikeBallNum[1];
+            int[] comNum = setComputerNums();
+            boolean goGame = true;
+            while (goGame) {
+                int[] userNum = getThreeNums();
+                int[] strikeBallNum = countStrikeBall(userNum, comNum);
+                int strike = strikeBallNum[0];
+                int ball = strikeBallNum[1];
 
-            doGame = printResult(strike,ball);
+                goGame = printResult(strike, ball);
+            }
+            doGame = wantGameRestart();
         }
     }
 
@@ -109,8 +113,9 @@ public class Application {
 
     public static boolean printResult(int strike, int ball){
         if (strike == 3) {
+            System.out.println("3스트라이크");
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            return wantGameRestart();
+            return false;
         }else if ((strike != 0) && (ball != 0)) {
             System.out.printf("%d볼 %d스트라이크\n",ball,strike);
             return true;
