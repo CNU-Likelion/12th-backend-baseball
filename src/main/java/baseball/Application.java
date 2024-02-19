@@ -126,6 +126,18 @@ public class Application {
         }
     }
 
+    public static void checkdiffNums(String k) {
+        int[] nums = new int[10];
+        for (int i = 0 ; i< 3; i++) {
+            int a = Integer.parseInt(String.valueOf(k.charAt(i)));
+            if (nums[a] == 0) {
+                nums[a] = a;
+            } else {
+                throw new IllegalArgumentException();
+            }
+
+        }
+    }
     public static boolean wantGameRestart() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String restart = readLine();
@@ -133,7 +145,7 @@ public class Application {
         //입력값 유효성 체크
         //한글자 숫자인지 먼저 확인
         if (restart.length() != 1) {
-            throw new IllegalArgumentException();
+
         }
         //숫자값이 1 또는 2인지 확인
         checkInputNum(restart,1,2);
