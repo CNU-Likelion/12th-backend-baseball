@@ -3,10 +3,17 @@ package baseball;
 import java.util.*;
 
 public class Hint {
+    public static final int YES = 1;
+    public static final int NO = 0;
+
+    public static final int BALL = 1;
+    public static final int NOTBALL = 0;
+
+    public static final int NUMBER_OF_CASE = 3;
 
     public int countStrike(List<Integer> randomNum, List<Integer> userNum) {
         int cnt = 0;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_OF_CASE; i++) {
             if (randomNum.get(i) == userNum.get(i)) {
                 cnt++;
             }
@@ -16,8 +23,10 @@ public class Hint {
 
     public int countBall(List<Integer> userNum, List<Integer> randomNum) {
         int cnt = 0;
-        for (int i = 0; i < 3; i++) {
-            cnt += checkBall(i, userNum, randomNum);
+        for (int i = 0; i < NUMBER_OF_CASE; i++) {
+            if (checkBall(i, userNum, randomNum) == BALL) {
+                cnt++;
+            }
         }
         return cnt;
     }
@@ -25,28 +34,28 @@ public class Hint {
     public int checkBall(int index, List<Integer> userNum, List<Integer> randomNum) {
         if (randomNum.contains(userNum.get(index))) {
             if (index != randomNum.indexOf(userNum.get(index))) {
-                return 1;
+                return BALL;
             }
         }
-        return 0;
+        return NOTBALL;
     }
 
-    public int printAnswer(int strike, int ball) {
-        int ifOneContinueUserSet = 1;
+    public int printAnswer(int numberOfStrike, int numberOfBall) {
+        int ContinueUserSet = YES;
 
-        if (ball != 0) {
-            System.out.printf("%d볼 ", ball);
+        if (numberOfBall != 0) {
+            System.out.printf("%d볼 ", numberOfBall);
         }
-        if (strike != 0) {
-            System.out.printf("%d스트라이크", strike);
-            if (strike == 3)
-                ifOneContinueUserSet = 0;
+        if (numberOfStrike != 0) {
+            System.out.printf("%d스트라이크", numberOfStrike);
+            if (numberOfStrike == 3)
+                ContinueUserSet = NO;
         }
-        if (ball == 0 && strike == 0) {
+        if (numberOfBall == 0 && numberOfStrike == 0) {
             System.out.printf("낫싱");
         }
         System.out.println();
 
-        return ifOneContinueUserSet;
+        return ContinueUserSet;
     }
 }

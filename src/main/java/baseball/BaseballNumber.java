@@ -5,8 +5,10 @@ import mallang.missionutils.*;
 
 public class BaseballNumber {
 
+    public static final int NUMBER_OF_CASE = 3;
+
     public void pickNum(List<Integer> randomNum) {
-        while (randomNum.size() != 3) {
+        while (randomNum.size() != NUMBER_OF_CASE) {
             int ranNum = Randoms.pickNumberInRange(1, 9);
             if (!randomNum.contains(ranNum)) {
                 randomNum.add(ranNum);
@@ -26,7 +28,7 @@ public class BaseballNumber {
     }
 
     public void checkUserNum(String[] userArr) {
-        if (userArr.length != 3) {
+        if (userArr.length != NUMBER_OF_CASE) {
             throw new IllegalArgumentException();
         }
     }
