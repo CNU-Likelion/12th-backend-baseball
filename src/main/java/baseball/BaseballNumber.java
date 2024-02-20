@@ -5,7 +5,7 @@ import mallang.missionutils.*;
 
 public class BaseballNumber {
 
-    void pickNum(List<Integer> randomNum) {
+    public void pickNum(List<Integer> randomNum) {
         while (randomNum.size() != 3) {
             int ranNum = Randoms.pickNumberInRange(1, 9);
             if (!randomNum.contains(ranNum)) {
@@ -14,7 +14,7 @@ public class BaseballNumber {
         }
     }
 
-    List<Integer> getUserNum() {
+    public List<Integer> getUserNum() {
         System.out.printf("숫자를 입력해주세요");
         String[] userArr = Console.readLine().split("");
         checkUserNum(userArr);
@@ -25,7 +25,7 @@ public class BaseballNumber {
         return userNum;
     }
 
-    void checkUserNum(String[] userArr) {
+    public void checkUserNum(String[] userArr) {
         if (userArr.length != 3) {
             throw new IllegalArgumentException();
         }

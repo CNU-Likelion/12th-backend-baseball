@@ -5,13 +5,13 @@ import mallang.missionutils.*;
 
 public class Application {
 
-    static int askFinish() {
+    private static int askFinish() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return Integer.parseInt(Console.readLine());
     }
 
-    static int endOrAgain(int again) {
+    private static int endOrAgain(int again) {
         int ifOneContinueGameSet = 1;
         if (again == 1) {
             ifOneContinueGameSet = 1;

@@ -3,7 +3,8 @@ package baseball;
 import java.util.*;
 
 public class Hint {
-    int countStrike(List<Integer> randomNum, List<Integer> userNum) {
+
+    public int countStrike(List<Integer> randomNum, List<Integer> userNum) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
             if (randomNum.get(i) == userNum.get(i)) {
@@ -13,7 +14,7 @@ public class Hint {
         return cnt;
     }
 
-    int countBall(List<Integer> userNum, List<Integer> randomNum) {
+    public int countBall(List<Integer> userNum, List<Integer> randomNum) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
             cnt += checkBall(i, userNum, randomNum);
@@ -21,7 +22,7 @@ public class Hint {
         return cnt;
     }
 
-    int checkBall(int index, List<Integer> userNum, List<Integer> randomNum) {
+    public int checkBall(int index, List<Integer> userNum, List<Integer> randomNum) {
         if (randomNum.contains(userNum.get(index))) {
             if (index != randomNum.indexOf(userNum.get(index))) {
                 return 1;
@@ -30,7 +31,7 @@ public class Hint {
         return 0;
     }
 
-    int printAnswer(int strike, int ball) {
+    public int printAnswer(int strike, int ball) {
         int ifOneContinueUserSet = 1;
 
         if (ball != 0) {
@@ -48,5 +49,4 @@ public class Hint {
 
         return ifOneContinueUserSet;
     }
-
 }
