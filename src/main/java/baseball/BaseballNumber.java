@@ -14,21 +14,20 @@ public class BaseballNumber {
         }
     }
 
-    String[] getUserNum() {
+    List<Integer> getUserNum() {
         System.out.printf("숫자를 입력해주세요");
-        return Console.readLine().split("");
+        String[] userArr = Console.readLine().split("");
+        checkUserNum(userArr);
+        List<Integer> userNum = new ArrayList<>();
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+        return userNum;
     }
 
     void checkUserNum(String[] userArr) {
         if (userArr.length != 3) {
             throw new IllegalArgumentException();
         }
-    }
-
-    List<Integer> addNumToList(List<Integer> userNum, String[] userArr) {
-        userNum.add(Integer.parseInt(userArr[0]));
-        userNum.add(Integer.parseInt(userArr[1]));
-        userNum.add(Integer.parseInt(userArr[2]));
-        return userNum;
     }
 }

@@ -30,33 +30,30 @@ public class Application {
         List<Integer> randomNum;
         List<Integer> userNum;
 
-        int doGameSet = 1;
-        int doUserSet = 1;
+        int ifOneContinueGameSet = 1;
+        int ifOneContinueUserSet = 1;
 
-        while (doGameSet == 1) {
+        while (ifOneContinueGameSet == 1) {
             randomNum = new ArrayList<>();
             baseballNumber.pickNum(randomNum);
 
-            while (doUserSet == 1) {
+            while (ifOneContinueUserSet == 1) {
                 int strike = 0;
                 int ball = 0;
 
                 userNum = new ArrayList<>();
 
-                String[] userArr = baseballNumber.getUserNum();
-
-                baseballNumber.checkUserNum(userArr);
-                baseballNumber.addNumToList(userNum, userArr);
+                userNum = baseballNumber.getUserNum();
 
                 strike = hint.countStrike(randomNum, userNum);
                 ball = hint.countBall(userNum, randomNum);
 
-                doUserSet = hint.printAnswer(strike, ball);
+                ifOneContinueUserSet = hint.printAnswer(strike, ball);
             }
 
             int again = askFinish();
-            doGameSet = endOrAgain(again);
-            doUserSet = 1;
+            ifOneContinueGameSet = endOrAgain(again);
+            ifOneContinueUserSet = 1;
         }
     }
 }
