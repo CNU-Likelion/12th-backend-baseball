@@ -1,9 +1,18 @@
 package baseball;
 
-import java.util.List;
+import java.util.*;
 import mallang.missionutils.*;
 
-public class HandleUserNum {
+public class BaseballNumber {
+
+    void pickNum(List<Integer> randomNum) {
+        while (randomNum.size() != 3) {
+            int ranNum = Randoms.pickNumberInRange(1, 9);
+            if (!randomNum.contains(ranNum)) {
+                randomNum.add(ranNum);
+            }
+        }
+    }
 
     String[] getUserNum() {
         System.out.printf("숫자를 입력해주세요");
