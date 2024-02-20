@@ -12,8 +12,7 @@ public class Application {
     }
 
     static int endOrAgain(int again) {
-        int ifOneContinueGameSet = 0;
-
+        int ifOneContinueGameSet = 1;
         if (again == 1) {
             ifOneContinueGameSet = 1;
         } else if (again == 2) {
@@ -22,7 +21,6 @@ public class Application {
         } else {
             throw new IllegalArgumentException();
         }
-
         return ifOneContinueGameSet;
     }
 
