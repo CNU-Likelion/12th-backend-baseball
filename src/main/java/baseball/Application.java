@@ -12,14 +12,18 @@ public class Application {
     }
 
     static int endOrAgain(int again) {
+        int ifOneContinueGameSet = 0;
+
         if (again == 1) {
-            return 1;
+            ifOneContinueGameSet = 1;
         } else if (again == 2) {
             System.out.println("게임종료");
-            return 0;
+            ifOneContinueGameSet = 0;
         } else {
             throw new IllegalArgumentException();
         }
+
+        return ifOneContinueGameSet;
     }
 
     public static void main(String[] args) {
