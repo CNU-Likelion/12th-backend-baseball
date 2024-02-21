@@ -42,7 +42,7 @@ public class Application {
     }
 
     public static int[] getThreeNums() {
-        int[] userNums = new int[3];
+        int[] userNums;
         String k ;
 
         System.out.print("숫자를 입력해주세요 : ");
