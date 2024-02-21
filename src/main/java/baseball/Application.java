@@ -48,7 +48,7 @@ public class Application {
         ArrayList<Integer> guess = parseInput(input);
         return guess;
     }
-    public static void alreadyNum(String input) {
+    public static void alreadyNum(String input) { // 변경 O
         boolean containNum;
         ArrayList<Integer> nums = new ArrayList<>();
         for(int i = 0; i < 3; i++) {
@@ -64,9 +64,13 @@ public class Application {
         }
     }
     public static ArrayList<Integer> parseInput(String input) {
-        int[] guess = new int[3];
-        for(int i = 0; i < guess.length; i++) {
-            guess[i] = Character.getNumericValue(input.charAt(i));
+        ArrayList<Integer> guess = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            char num = input.charAt(i);
+            String strNum = String.valueOf(num);
+            if(checkInput(strNum, 1, 9)) {
+                guess.add(Integer.parseInt(strNum));
+            }
         }
         return guess;
     }
