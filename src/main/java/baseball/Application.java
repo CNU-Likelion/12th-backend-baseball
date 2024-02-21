@@ -30,7 +30,6 @@ public class Application {
         }
     }
 
-    //메서드 선언
     public static int[] setComputerNums() {
         int[] computerNums = new int[3];
 
@@ -43,15 +42,15 @@ public class Application {
 
     public static int[] getThreeNums() {
         int[] userNums;
-        String k ;
+        String inputNum ;
 
         System.out.print("숫자를 입력해주세요 : ");
-        k = readLine();
-        if (k.length() > 3) {
+        inputNum = readLine();
+        if (inputNum.length() > 3) {
             throw new IllegalArgumentException();
         }
-        checkdiffNums(k);
-        userNums = detachNum(k);
+        checkDiffNums(inputNum);
+        userNums = detachNum(inputNum);
 
         return userNums;
     }
@@ -98,12 +97,10 @@ public class Application {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String restart = readLine();
 
-        //입력값 유효성 체크
-        //한글자 숫자인지 먼저 확인
         if (restart.length() != 1) {
-
+            throw new IllegalArgumentException();
         }
-        //숫자값이 1 또는 2인지 확인
+
         checkInputNum(restart,1,2);
 
         if (restart.equals("1")) {
@@ -115,12 +112,12 @@ public class Application {
         }
     }
 
-    public static void checkdiffNums(String k) {
+    public static void checkDiffNums(String strnums) {
         int[] nums = new int[10];
         for (int i = 0 ; i< 3; i++) {
-            int a = Integer.parseInt(String.valueOf(k.charAt(i)));
-            if (nums[a] == 0) {
-                nums[a] = a;
+            int idx = Integer.parseInt(String.valueOf(strnums.charAt(i)));
+            if (nums[idx] == 0) {
+                nums[idx] = idx;
             } else {
                 throw new IllegalArgumentException();
             }
@@ -128,13 +125,13 @@ public class Application {
         }
     }
 
-    public static int[] detachNum(String k) {
+    public static int[] detachNum(String nums) {
         int[] numsList = new int[3];
         for (int i = 0; i < 3; i++) {
-            char b = k.charAt(i);
-            String a = String.valueOf(b);
-            if (checkInputNum(a, 1, 9)) {
-                numsList[i] = Integer.parseInt(a);
+            char num = nums.charAt(i);
+            String strNum = String.valueOf(num);
+            if (checkInputNum(strNum, 1, 9)) {
+                numsList[i] = Integer.parseInt(strNum);
             }
 
         }
@@ -148,11 +145,11 @@ public class Application {
         return ball;
     }
 
-    public static boolean checkInputNum(String a,int start,int end) throws IllegalArgumentException{
+    public static boolean checkInputNum(String inputWords,int start,int end) throws IllegalArgumentException{
 
         try {
-            int b = Integer.parseInt(a) ;
-            if ((start <= b) && (b <=end)) {
+            int num = Integer.parseInt(inputWords) ;
+            if ((start <= num) && (num <=end)) {
                 return true;
             } else {
                 throw new IllegalArgumentException();
