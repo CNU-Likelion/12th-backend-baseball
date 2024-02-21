@@ -28,23 +28,42 @@ public class Application {
             }
         }
     }
-    public static ArrayList<Integer> createNum() {
+    public static ArrayList<Integer> createNum() { // 변경 O
         ArrayList<Integer> answer = new ArrayList<>();
         for(int i = 0; i < answer.size(); i++) {
             answer.set(i, Randoms.pickNumberInRange(1, 9));
         }
         return answer;
     }
-    // 사용자로부터 숫자 입력받아 배열에 저장
-    // 사용자가 잘못된 값 입력할 경우 IllegalArgumentException 발생 (만들어야 함)
-    public static int[] userNum() {
+
+    public static ArrayList<Integer> userNum() {
+        String input;
         System.out.println("숫자를 입력해주세요 : ");
-        String input = readLine();
-        List<Integer> guess = parseInput(input);
+
+        input = readLine();
+        if(input.length() > 3) {
+            throw new IllegalArgumentException();
+        }
+        alreadyNum(input);
+        ArrayList<Integer> guess = parseInput(input);
         return guess;
     }
-    // 입력받은 String값 Int로 파싱해주기
-    public static List<Integer> parseInput(String input) {
+    public static void alreadyNum(String input) {
+        boolean containNum;
+        ArrayList<Integer> nums = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            int idx = Integer.parseInt(String.valueOf(input.charAt(i)));
+
+            containNum = !(nums.contains(idx));
+            if(containNum) {
+                nums.add(idx);
+            }
+            else {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+    public static ArrayList<Integer> parseInput(String input) {
         int[] guess = new int[3];
         for(int i = 0; i < guess.length; i++) {
             guess[i] = Character.getNumericValue(input.charAt(i));
