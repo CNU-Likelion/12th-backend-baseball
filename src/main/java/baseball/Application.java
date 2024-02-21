@@ -1,4 +1,8 @@
 package baseball;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import static mallang.missionutils.Console.*;
 import static mallang.missionutils.Randoms.*;
 
@@ -16,13 +20,13 @@ public class Application {
         boolean doGame = true;
 
         while (doGame) {
-            int[] comNum = setComputerNums();
+            ArrayList<Integer> comNum = setComputerNums();
             boolean goGame = true;
             while (goGame) {
-                int[] userNum = getThreeNums();
-                int[] strikeBallNum = countStrikeBall(userNum, comNum);
-                int strike = strikeBallNum[0];
-                int ball = strikeBallNum[1];
+                ArrayList<Integer> userNum = getThreeNums();
+                ArrayList<Integer> strikeBallNum = countStrikeBall(userNum, comNum);
+                int strike = strikeBallNum.get(0);
+                int ball = strikeBallNum.get(1);
 
                 goGame = printResult(strike, ball);
             }
@@ -30,18 +34,18 @@ public class Application {
         }
     }
 
-    public static int[] setComputerNums() {
-        int[] computerNums = new int[3];
+    public static ArrayList<Integer> setComputerNums() {
+        ArrayList<Integer> computerNums = new ArrayList<>();
 
         for (int i = 0 ; i < 3 ; i++) {
-            computerNums[i] = pickNumberInRange(1,9);
+            computerNums.add(pickNumberInRange(1,9));
         }
 
         return computerNums;
     }
 
-    public static int[] getThreeNums() {
-        int[] userNums;
+    public static ArrayList<Integer> getThreeNums() {
+        ArrayList<Integer> userNums;
         String inputNum ;
 
         System.out.print("숫자를 입력해주세요 : ");
@@ -55,12 +59,12 @@ public class Application {
         return userNums;
     }
 
-    public static int[] countStrikeBall(int[] user, int[] com) {
+    public static ArrayList<Integer> countStrikeBall(ArrayList<Integer> user, ArrayList<Integer> com) {
         int strike =0;
         int ball=0;
 
         for (int i =0; i<3; i++) {
-            if(user[i] == com[i]) {
+            if (user.get(i).equals(com.get(i))) {
                 strike++;
             }
         }
@@ -70,7 +74,11 @@ public class Application {
                 ball = addBall(user,com,ball,i,j) ;
             }
         }
-        return new int[] {strike,ball};
+        ArrayList<Integer> returnValues = new ArrayList<>();
+        returnValues.add(strike);
+        returnValues.add(ball);
+
+        return returnValues;
     }
 
     public static boolean printResult(int strike, int ball){
@@ -112,44 +120,45 @@ public class Application {
         }
     }
 
-    public static void checkDiffNums(String strnums) {
-        int[] nums = new int[10];
+    public static void checkDiffNums(String strNums) {
+        boolean isContainNum;
+
+        ArrayList<Integer> nums = new ArrayList<>();
         for (int i = 0 ; i< 3; i++) {
-            int idx = Integer.parseInt(String.valueOf(strnums.charAt(i)));
-            if (nums[idx] == 0) {
-                nums[idx] = idx;
+            int idx = Integer.parseInt(String.valueOf(strNums.charAt(i)));
+
+            isContainNum = !(nums.contains(idx));
+            if (isContainNum) {
+                nums.add(idx);
             } else {
                 throw new IllegalArgumentException();
             }
-
         }
     }
 
-    public static int[] detachNum(String nums) {
-        int[] numsList = new int[3];
+    public static ArrayList<Integer> detachNum(String nums) {
+        ArrayList<Integer> numsList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             char num = nums.charAt(i);
             String strNum = String.valueOf(num);
             if (checkInputNum(strNum, 1, 9)) {
-                numsList[i] = Integer.parseInt(strNum);
+                numsList.add(Integer.parseInt(strNum));
             }
-
         }
         return numsList;
     }
 
-    public static int addBall(int[] user, int[] com, int ball, int i ,int j ) {
-        if ((i != j) && (user[i] == com[j])) {
+    public static int addBall(ArrayList<Integer> user, ArrayList<Integer> com, int ball, int i ,int j ) {
+        if ((i != j) && (user.get(i).equals(com.get(j)))) {
             ball++;
         }
         return ball;
     }
 
     public static boolean checkInputNum(String inputWords,int start,int end) throws IllegalArgumentException{
-
         try {
             int num = Integer.parseInt(inputWords) ;
-            if ((start <= num) && (num <=end)) {
+            if ((start <= num) && (num <= end)) {
                 return true;
             } else {
                 throw new IllegalArgumentException();
@@ -157,18 +166,5 @@ public class Application {
         } catch (IllegalArgumentException e){
             throw e;
         }
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
