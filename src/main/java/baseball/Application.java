@@ -1,76 +1,96 @@
 package baseball;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.io.IOException;
+import mallang.missionutils.Console;
+import mallang.missionutils.Randoms;
 import java.util.*;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Application {
-	private static final int MIN = 1;
-	private static final int MAX = 9;
+	private static final int BALL_MIN = 1;
+	private static final int BALL_MAX = 9;
 	private static final int BALL_SIZE = 3;
 
 	public static void main(String[] args) {
-		while (true) {
-			playGame();
+		boolean gameSignal = true;
+		while (gameSignal) {
+			gameSignal = playGame();
 		}
 	}
 
-	/* 게임 실행 */
-	private static void playGame() {
-		// 랜덤 3자리 숫자 생성
-		int computerBall[] = generateRandomBall();
-		System.out.println("랜덤 숫자 : " + Arrays.toString(computerBall));
-
-		while (true) {
-			// 사용자 입력 3자리 숫자
-			int[] userBall = getUserInput();
-			checkBall(userBall);
-
-			// 볼, 스트라이크, 낫싱 체크
-			int ballScore = ballCheck(computerBall, userBall);
-			int strikeScore = strikeCheck(computerBall, userBall);
-
-			// 힌트 출력
-			if (strikeScore != 0 && ballScore == 0) {
-				System.out.println(strikeScore + "스트라이크");
-			} else if (strikeScore == 0 && ballScore != 0) {
-				System.out.println(ballScore + "볼");
-			} else if (strikeScore == 3) {
-				System.out.println(strikeScore + "스트라이크");
-				System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-				playAgain();
-			} else if (strikeScore == 0 && ballScore == 0) {
-				System.out.println("낫싱");
-			} else {
-				System.out.println(ballScore + "볼" + strikeScore + "스트라이크");
+	private static boolean contains(int[] array, int target) {
+		for (int num : array) {
+			if (num == target) {
+				return true;
 			}
 		}
+		return false;
 	}
 
-	/* 게임 반복 */
-	private static void playAgain() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		String inputNum = Console.readLine();
-		if (inputNum.equals("1")) {
-			playGame();
+	private static int ballCheck(int[] computerNum, List<String> userNum) {
+		int ball = 0;
+		for (int i = 0; i < BALL_SIZE; i++) {
+			if (contains(computerNum, Integer.parseInt(userNum.get(i)))) {
+				ball++;
+			}
+		}
+		return ball;
+	}
+
+	private static int strikeCheck(int[] computerNum, List<String> userNum) {
+		int strike = 0;
+		for (int i = 0; i < BALL_SIZE; i++) {
+			if (computerNum[i] == Integer.parseInt(userNum.get(i))) {
+				strike++;
+			}
+		}
+		return strike;
+	}
+
+	private static void hintBall(int strikeScore, int ballScore) {
+		if (strikeScore != 0 && ballScore == 0) {
+			System.out.println(strikeScore + "스트라이크");
+		} else if (strikeScore == 0 && ballScore != 0) {
+			System.out.println(ballScore + "볼");
+		} else if (strikeScore == 3) {
+			System.out.println(strikeScore + "스트라이크");
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		} else if (strikeScore == 0 && ballScore == 0) {
+			System.out.println("낫싱");
+		} else if (strikeScore != 0 && (ballScore - strikeScore) == 0) {
+			System.out.println(strikeScore + "스트라이크");
 		} else {
-			System.exit(0);
+			System.out.println((ballScore - strikeScore) + "볼 " + strikeScore + "스트라이크");
 		}
 	}
 
-	/* 랜덤 3자리 숫자 생성 메소드 */
+	private static boolean checkError(List<String> inputBalls) {
+		Set<Integer> set = new HashSet<>();
+		try {
+			if (inputBalls.size() != BALL_SIZE) {
+				throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
+			}
+			for (String num : inputBalls) {
+				int intNum = Integer.parseInt(num);
+				if (intNum < BALL_MIN || intNum > BALL_MAX) {
+					throw new IllegalArgumentException("1~9의 범위 내에서 입력해주세요.");
+				}
+				if (!set.add(intNum)) {
+					throw new IllegalArgumentException("숫자를 중복해서 입력하지 마세요.");
+				}
+			}
+			return true;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
 	private static int[] generateRandomBall() {
 		Set<Integer> set = new HashSet<>();
 		int[] randomBall = new int[3];
 		int count = 0;
 		while (count < 3) {
 			int number = Randoms.pickNumberInRange(1, 9);
-			if (!set.contains(number)) {    // 중복이 없을 경우
+			if (!set.contains(number)) {
 				randomBall[count] = number;
 				set.add(number);
 				count++;
@@ -79,63 +99,39 @@ public class Application {
 		return randomBall;
 	}
 
-	/* 사용자 입력 3자리 숫자 메소드 */
-	private static int[] getUserInput() {
+	private static List<String> getUserInput() {
 		System.out.print("숫자를 입력해주세요 : ");
+		List<String> inputBalls = new ArrayList<>();
 		String inputNum = Console.readLine();
-		if (inputNum.length() != BALL_SIZE) {
-			throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
+		for (char c : inputNum.toCharArray()) {
+			inputBalls.add(Character.toString(c));
 		}
-		int[] userBall = new int[BALL_SIZE];
-		for (int i = 0; i < BALL_SIZE; i++) {
-			userBall[i] = Character.getNumericValue(inputNum.charAt(i));
-		}
-		return userBall;
+		return inputBalls;
 	}
 
-	/* 오류를 체크하는 메소드*/
-	private static void checkBall(int[] inputBalls) {
-		Set<Integer> set = new HashSet<>();
-		for (int num : inputBalls) {
-			if (num < MIN || num > MAX) {
-				throw new IllegalArgumentException("1~9의 범위 내에서 입력해주세요.");
-			}
-			if (!set.add(num)) {
-				throw new IllegalArgumentException("숫자를 중복해서 입력하지 마세요.");
-			}
+	private static boolean playAgain() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		String inputNum = Console.readLine();
+		if (!inputNum.equals("1") && !inputNum.equals("2")) {
+			System.out.println("올바른 입력이 아닙니다. 다시 시도하세요.");
+			return inputNum.equals("2");
 		}
-		System.out.println("오류 없음");
+		return inputNum.equals("1");
 	}
 
-	/* 볼 카운트 메소드 */
-	private static int ballCheck(int[] computerNum, int[] userNum) {
-		int ball = 0;
-		for (int num : userNum) {
-			if (contains(computerNum, num)) {
-				ball++;
+	private static boolean playGame() {
+		int computerBall[] = generateRandomBall();
+		while (true) {
+			List<String> userBall = getUserInput();
+			if (!checkError(userBall)) {
+				return false;
+			}
+			int ballScore = ballCheck(computerBall, userBall);
+			int strikeScore = strikeCheck(computerBall, userBall);
+			hintBall(strikeScore, ballScore);
+			if (strikeScore == 3) {
+				return playAgain();
 			}
 		}
-		return ball;
-	}
-
-	/* 스트라이크 카운트 메소드 */
-	private static int strikeCheck(int[] computerNum, int[] userNum) {
-		int strike = 0;
-		for (int i = 0; i < BALL_SIZE; i++) {
-			if (computerNum[i] == userNum[i]) {
-				strike++;
-			}
-		}
-		return strike;
-	}
-
-	/* 배열에 숫자가 포함되어 있는지 확인하는 메소드 */
-	private static boolean contains(int[] array, int target) {
-		for (int num : array) {
-			if (num == target) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
