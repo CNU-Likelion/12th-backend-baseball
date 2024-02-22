@@ -49,8 +49,6 @@ public class Application {
                 int numberOfStrike = 0;
                 int numberOfBall = 0;
 
-                userNum = new ArrayList<>();
-
                 userNum = baseballNumber.getUserNum();
 
                 numberOfStrike = hint.countStrike(randomNum, userNum);
