@@ -1,5 +1,24 @@
 # 미션 - 숫자 야구 게임
 
+## 구현할 기능 목록 
+
+- 1부터 9까지의 서로 다른 임의의 수 3개를 생성한다. 
+  - mallang.missionutils.Randoms의 pickNumberInRange() 사용
+
+- 사용자로부터 숫자를 입력받는다.
+  - mallang.missionutils.Console의 readline() 사용
+  - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 발생시킨 후 종료
+
+- 임의의 수와 사용자의 수를 비교한다.
+  - 숫자와 자리가 같으면 스트라이크
+  - 숫자는 같고 자리가 다르면 볼
+  - 숫자와 자리 같은 것이 둘다 없으면 낫싱
+
+- 숫자 비교 후 게임을 계속하거나 종료
+  - 3개의 숫자가 모두 같으면 게임 종료
+
+- 게임 종료 후 1을 입력해 게임을 다시 시작하거나 2를 입력해 게임을 완전히 종료 가능
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
@@ -118,3 +137,4 @@
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blob/master/LICENSE) licensed.
+
