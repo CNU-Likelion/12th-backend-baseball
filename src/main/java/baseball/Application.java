@@ -23,8 +23,8 @@ public class Application {
     }
 
     private static void playGame() {
-        int[] answer = generateRandomNumbers();
-        System.out.println("숫자 야구 답 : " + Arrays.toString(answer));
+        List<Integer> answer = generateRandomNumbers();
+        System.out.println("숫자 야구 답 : " + answer);
 
         while (true) {
             System.out.print("숫자를 입력해주세요: ");
@@ -33,7 +33,7 @@ public class Application {
                 throw new IllegalArgumentException("잘못된 입력입니다.");
             }
 
-            int[] guess = parseInput(input);
+            List<Integer> guess = parseInput(input);
             String result = getResult(answer, guess);
             System.out.println(result);
 
@@ -44,8 +44,8 @@ public class Application {
         }
     }
 
-    private static int[] generateRandomNumbers() {
-        int[] numbers = new int[3];
+    private static List<Integer> generateRandomNumbers() {
+        List<Integer> numbers = new ArrayList<>();
         Set<Integer> uniqueDigits = new HashSet<>();
 
         for (int i = 0; i < 3; i++) {
@@ -53,7 +53,7 @@ public class Application {
             do {
                 digit = Randoms.pickNumberInRange(1, 9);
             } while (!uniqueDigits.add(digit));
-            numbers[i] = digit;
+            numbers.add(digit);
         }
         return numbers;
     }
@@ -70,21 +70,21 @@ public class Application {
         return true;
     }
 
-    private static int[] parseInput(String input) {
-        int[] numbers = new int[3];
-        for (int i = 0; i < 3; i++) {
-            numbers[i] = Character.getNumericValue(input.charAt(i));
+    private static List<Integer> parseInput(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (char c : input.toCharArray()) {
+            numbers.add(Character.getNumericValue(c));
         }
         return numbers;
     }
 
-    private static String getResult(int[] answer, int[] guess) {
+    private static String getResult(List<Integer> answer, List<Integer> guess) {
         int strike = 0;
         int ball = 0;
         for (int i = 0; i < 3; i++) {
-            if (answer[i] == guess[i]) {
+            if (answer.get(i).equals(guess.get(i))) {
                 strike++;
-            } else if (contains(answer, guess[i])) {
+            } else if (guess.contains(answer.get(i))) {
                 ball++;
             }
         }
