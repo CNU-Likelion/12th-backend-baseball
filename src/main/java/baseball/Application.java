@@ -13,6 +13,17 @@ public class Application {
 
     public static final int NUMBER_OF_CASE = 3;
 
+    private static List<Integer> pickNum() {
+        List<Integer> randomNum = new ArrayList<>();
+        while (randomNum.size() != NUMBER_OF_CASE) {
+            int ranNum = Randoms.pickNumberInRange(1, 9);
+            if (!randomNum.contains(ranNum)) {
+                randomNum.add(ranNum);
+            }
+        }
+        return randomNum;
+    }
+
     private static List<Integer> getUserNum() {
         System.out.printf("숫자를 입력해주세요");
         String[] userArr = Console.readLine().split("");
@@ -52,28 +63,28 @@ public class Application {
     public static void main(String[] args) {
 
         Hint hint = new Hint();
-        BaseballNumber baseballNumber = new BaseballNumber();
-
-        List<Integer> randomNum;
-        List<Integer> userNum;
+        BaseballNumber baseballNumber;
 
         int ContinueGameSet = YES;
         int ContinueUserSet = YES;
 
         while (ContinueGameSet == YES) {
-            randomNum = new ArrayList<>();
-            baseballNumber.pickNum(randomNum);
+            baseballNumber = new BaseballNumber();
+            baseballNumber.setRandomNum(pickNum());
 
             while (ContinueUserSet == YES) {
                 int numberOfStrike = 0;
                 int numberOfBall = 0;
 
-                userNum = getUserNum();
+                baseballNumber.setUserNum(getUserNum());
 
-                numberOfStrike = baseballNumber.countStrike(randomNum, userNum);
-                numberOfBall = baseballNumber.countBall(userNum, randomNum);
+                numberOfStrike = baseballNumber.countStrike();
+                numberOfBall = baseballNumber.countBall();
 
-                ContinueUserSet = hint.printAnswer(numberOfStrike, numberOfBall);
+                hint.setNumberOfStrike(numberOfStrike);
+                hint.setNumberOfBall(numberOfBall);
+
+                ContinueUserSet = hint.printAnswer();
             }
 
             int again = askFinish();

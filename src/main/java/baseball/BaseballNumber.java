@@ -1,7 +1,6 @@
 package baseball;
 
 import java.util.*;
-import mallang.missionutils.*;
 
 public class BaseballNumber {
 
@@ -10,16 +9,15 @@ public class BaseballNumber {
     public static final int BALL = 1;
     public static final int NOTBALL = 0;
 
-    public void pickNum(List<Integer> randomNum) {
-        while (randomNum.size() != NUMBER_OF_CASE) {
-            int ranNum = Randoms.pickNumberInRange(1, 9);
-            if (!randomNum.contains(ranNum)) {
-                randomNum.add(ranNum);
-            }
-        }
+    private List<Integer> randomNum;
+    private List<Integer> userNum;
+
+    BaseballNumber() {
+        randomNum = new ArrayList<>();
+        userNum = new ArrayList<>();
     }
 
-    public int countStrike(List<Integer> randomNum, List<Integer> userNum) {
+    public int countStrike() {
         int cnt = 0;
         for (int i = 0; i < NUMBER_OF_CASE; i++) {
             if (randomNum.get(i) == userNum.get(i)) {
@@ -29,22 +27,30 @@ public class BaseballNumber {
         return cnt;
     }
 
-    public int countBall(List<Integer> userNum, List<Integer> randomNum) {
+    public int countBall() {
         int cnt = 0;
         for (int i = 0; i < NUMBER_OF_CASE; i++) {
-            if (checkBall(i, userNum, randomNum) == BALL) {
+            if (checkBall(i) == BALL) {
                 cnt++;
             }
         }
         return cnt;
     }
 
-    public int checkBall(int index, List<Integer> userNum, List<Integer> randomNum) {
+    public int checkBall(int index) {
         if (randomNum.contains(userNum.get(index))) {
             if (index != randomNum.indexOf(userNum.get(index))) {
                 return BALL;
             }
         }
         return NOTBALL;
+    }
+
+    public void setUserNum(List<Integer> userNum) {
+        this.userNum = userNum;
+    }
+
+    public void setRandomNum(List<Integer> randomNum) {
+        this.randomNum = randomNum;
     }
 }
