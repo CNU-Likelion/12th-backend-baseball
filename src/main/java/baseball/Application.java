@@ -11,6 +11,25 @@ public class Application {
     public static final int USER_WANT_CONTINUE = 1;
     public static final int USER_WANT_FINISH = 2;
 
+    public static final int NUMBER_OF_CASE = 3;
+
+    private static List<Integer> getUserNum() {
+        System.out.printf("숫자를 입력해주세요");
+        String[] userArr = Console.readLine().split("");
+        checkUserNum(userArr);
+        List<Integer> userNum = new ArrayList<>();
+        userNum.add(Integer.parseInt(userArr[0]));
+        userNum.add(Integer.parseInt(userArr[1]));
+        userNum.add(Integer.parseInt(userArr[2]));
+        return userNum;
+    }
+
+    private static void checkUserNum(String[] userArr) {
+        if (userArr.length != NUMBER_OF_CASE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private static int askFinish() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -18,16 +37,16 @@ public class Application {
     }
 
     private static int endOrAgain(int again) {
-        int ContinueGameSet = YES;
+        int continueGameSet = YES;
         if (again == USER_WANT_CONTINUE) {
-            ContinueGameSet = YES;
+            continueGameSet = YES;
         } else if (again == USER_WANT_FINISH) {
             System.out.println("게임종료");
-            ContinueGameSet = NO;
+            continueGameSet = NO;
         } else {
             throw new IllegalArgumentException();
         }
-        return ContinueGameSet;
+        return continueGameSet;
     }
 
     public static void main(String[] args) {
@@ -49,10 +68,10 @@ public class Application {
                 int numberOfStrike = 0;
                 int numberOfBall = 0;
 
-                userNum = baseballNumber.getUserNum();
+                userNum = getUserNum();
 
-                numberOfStrike = hint.countStrike(randomNum, userNum);
-                numberOfBall = hint.countBall(userNum, randomNum);
+                numberOfStrike = baseballNumber.countStrike(randomNum, userNum);
+                numberOfBall = baseballNumber.countBall(userNum, randomNum);
 
                 ContinueUserSet = hint.printAnswer(numberOfStrike, numberOfBall);
             }
