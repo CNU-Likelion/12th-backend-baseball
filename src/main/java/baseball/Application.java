@@ -1,82 +1,99 @@
 package baseball;
 
+import java.util.Objects;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+
+
+
+
 public class Application {
     public static void main(String[] args) {
-         Random random = new Random();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("게임을 시작하려면 s 입력");
-        String answer = sc.nextLine();
+        int userNumber[] = getInput(sc);
+        int randomNumber[] = getRandomNumber();
 
-        while (answer.equals("s")){
-
-
-
-            System.out.println("game start !");
-
-            int a[] = new int[3];
-            int b[] = new int[3];
-
-            for (int i = 0; i < a.length; i++){
-                a[i] = random.nextInt(9)+1;
-                while(a[0]==0){
-                    a[0] = random.nextInt(9)+1;
-                }
-            }
-
-            int strike = 0;
-            int ball = 0;
+        System.out.println("시작(1)/종료(2)");
+        String start = sc.nextLine();
 
 
-            while (true){
-                System.out.println("세 자리 수 입력 >> ");
-                String c = sc.nextLine();
+
+        while (true) {
 
 
-                //예외처리
+            int strike = strike(userNumber, randomNumber);
+            int ball = ball(userNumber, randomNumber);
 
-                for (int i = 0; i < b.length; i++) {
-                    b[i] = c.charAt(i)-48;
-
-
-                }
-                for (int i = 0; i < b.length; i++) {
-                    for (int j = 0; j < b.length; j++) {
-                        if(a[i]==b[i]){
-                            if(i==j){
-                                strike++;
-                            }
-                            else {
-                                ball++;
-                            }
-                        }
-
-                    }
-
-                }
-                if(strike==0 && ball==0){
-                    System.out.println("nothing !");
-                }
-                else{
-                    System.out.println("스트라이크 : "+strike+" 볼 : "+ball);
-                }
-
-                if(strike==3){
+            if(strike==3){
+                System.out.println("3 스트라이크 정답 !!!");
+                System.out.println("시작(1)/종료(2)");
+                start = sc.nextLine();
+                if(start=="2"){
                     break;
                 }
 
-
             }
-            System.out.println("종료 [e] , 다시 게임하기 [s]를 입력해주세요");
-            answer = sc.nextLine();
+
+            else{
+                System.out.println(strike+" 스트라이크 "+ball+" 볼");
+            }
+
 
         }
+        sc.close();
+    }
+    //랜덤 수 생성
+    public static int[] getRandomNumber () {
+        Random random = new Random();
+        int[] randomNumber = new int[3];
+        for (int i = 0; i < 3; i++) {
+            randomNumber[i] = (int) (Math.random() * 9) + 1;
+        }
+        return randomNumber;
+    }
+    //사용자 수 입력
+    public static int[] getInput(Scanner sc) {
 
+        int[] userNumber = new int[3];
+        System.out.println();
+        String input = sc.nextLine();
+        if (!Pattern.matches("^[0-9]*$", input)) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < 3; i++) {
+            userNumber[i] = input.charAt(i);
+        }
 
-
-
-
-
+        return userNumber;
 
     }
+    //스트라이크 수 계산
+    public static int strike (int[] userNumber, int[] randomNumber){
+        int strike = 0;
+        for (int i = 0; i < 3; i++) {
+            if (userNumber[i] == randomNumber[i]) strike++;
+
+        }
+        return strike;
+    }
+
+    //볼 수 계산
+    public static int ball (int[] userNumber, int[] randomNumber){
+        int ball =0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(userNumber[i]==randomNumber[j]) ball++;
+            }
+        }
+        return ball;
+    }
+
+
+
 }
+
+
+
